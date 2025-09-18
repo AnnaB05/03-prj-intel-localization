@@ -1,0 +1,464 @@
+/* Set a blue gradient background for the header only */
+header {
+  /* Intel blue gradient background for banner only */
+  background: linear-gradient(135deg, #0071c5 0%, #00a6e0 100%);
+  /* Center the content and add spacing */
+  text-align: center;
+  padding: 40px 20px 30px 20px;
+  border-bottom: 2px solid #fff;
+  display: flex;                /* Use flexbox for layout */
+  flex-direction: column;       /* Stack children vertically */
+  align-items: center;          /* Center children horizontally */
+  justify-content: center;      /* Center children vertically */
+  box-sizing: border-box;       /* Include padding in width */
+}
+
+/* Set the body background to match .main-content-bg */
+body {
+  background-color: #e6f0fa;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff; /* White text for contrast */
+}
+
+/* Ensure header content wraps and stays within screen */
+header > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;       /* Prevent text overflow */
+}
+
+/* Style the Intel logo */
+header img {
+  /* Set a fixed width for the logo */
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+  /* Add a little drop shadow for contrast */
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+}
+
+/* Main headline style */
+header h1 {
+  font-size: 2.2em;
+  margin: 10px 0 15px 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  /* Add a subtle text shadow for better contrast */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Subheading / description style */
+header p {
+  font-size: 1.1em;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.5;
+  color: #e0f7fa; /* Lighter blue for subheading */
+}
+
+/* Soft off-white background for main content below the header */
+.main-content-bg {
+  /* Use a slightly darker, cool gray-blue shade for more shadow contrast */
+  background-color: #e6f0fa; /* Intel-inspired, not pure white, not blue */
+  padding: 30px 0;
+  color: #0071c5;
+}
+
+/* Make all body text (except headers) black for readability */
+.main-content-bg,
+.main-content-bg p,
+.main-content-bg div,
+.main-content-bg section {
+  color: #000;
+}
+
+/* Timeline section: horizontal scroll on large screens */
+.main-content-bg section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* No wrapping on large screens */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 20px;
+  padding: 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #0071c5 #f4fafd;
+  /* Enable scroll snap for smooth horizontal navigation */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Style for each milestone (timeline) card */
+.main-content-bg section > div {
+  border: 2px solid #e3eef7; /* Soft Intel blue border */
+  border-radius: 14px; /* Rounded corners */
+  min-width: 220px;
+  max-width: 300px;
+  width: 100%;
+  /* Set a fixed height for all cards so they don't change size on hover */
+  height: 220px;
+  padding: 22px 18px; /* More padding for space */
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 113, 197, 0.06); /* Subtle Intel blue shadow */
+  flex: 0 0 auto;
+  margin: 0 auto;
+  text-align: center;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  position: relative; /* Needed for absolute positioning inside */
+  overflow: hidden;   /* Hide overflowing content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Add scroll snap alignment for each card */
+  scroll-snap-align: start;
+}
+
+/* Card hover effect with shadow */
+.main-content-bg section > div:hover {
+  /* Dramatic, noticeable shadow on hover */
+  box-shadow:
+    0 12px 32px 0 rgba(0, 113, 197, 0.30), /* Strong Intel blue shadow */
+    0 4px 24px 0 rgba(0,0,0,0.18);         /* Extra dark shadow for depth */
+  border-color: #0071c5;
+}
+
+/* Hide additional details by default */
+.card-details {
+  display: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Show details and hide year/title on hover */
+.main-content-bg section > div:hover .card-details {
+  display: flex;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #fff;
+  border-radius: 14px;
+  z-index: 2;
+  padding: 22px 18px;
+  animation: fadeIn 0.3s;
+  /* Center the text vertically and horizontally */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Make sure text wraps and doesn't overflow */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Make sure the paragraph inside .card-details wraps and is centered */
+.card-details p {
+  margin: 0;
+  color: #222;
+  font-size: 1em;
+  line-height: 1.5;
+  width: 100%;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Hide the year and title when hovering */
+.main-content-bg section > div:hover h2,
+.main-content-bg section > div:hover h3 {
+  display: none;
+}
+
+/* Overlay for year/title for readability */
+.card-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Use a soft black overlay for maximum text readability */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.30) 100%
+  );
+  border-radius: 14px;
+  z-index: 1;
+  pointer-events: none; /* Let mouse events pass through */
+}
+
+/* Place year and title above overlay */
+.main-content-bg section > div h2,
+.main-content-bg section > div h3 {
+  position: relative;
+  z-index: 2;
+  color: #f9f9f9; /* Softer off-white for high contrast on overlay */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35); /* Stronger shadow for readability */
+  margin-top: 0;
+  margin-bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Hide overlay and show info on hover */
+.main-content-bg section > div:hover {
+  background: #fff !important; /* Show white background on hover */
+}
+
+/* Hide overlay and headings on hover */
+.main-content-bg section > div:hover .card-overlay,
+.main-content-bg section > div:hover h2,
+.main-content-bg section > div:hover h3 {
+  display: none;
+}
+
+/* Simple fade-in animation for details */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive: stack cards vertically and fill width on small screens */
+@media (max-width: 700px) {
+  .main-content-bg section {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-x: visible;
+    gap: 16px;
+  }
+  .main-content-bg section > div {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 0 12px 0;
+  }
+}
+
+/* Extra fix for very narrow screens (like 263px wide) */
+@media (max-width: 320px) {
+  .main-content-bg section > div {
+    padding: 12px 4px;
+    font-size: 0.95em;
+  }
+}
+
+/* background images for each card  */
+.card-bg-1968 {
+  background-image: url('img/Intel1968Founded.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-1971 {
+  background-image: url('img/first1971micro.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-1978 {
+  background-image: url('img/intel8086processor.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-1985 {
+  background-image: url('img/intel1985processor386.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-2006 {
+  background-image: url('img/2006intelGHG.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-2020 {
+  background-image: url('img/intelRise2020strat.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-2022 {
+  background-image: url('img/net0intel2022.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-2023 {
+  background-image: url('img/intel2023renewableEnergy.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card-bg-2024 {
+  background-image: url('img/sustainability2024summit.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 3-Column Content Section: Improve contrast for text and keep blue for headers */
+section .row h2 {
+  color: #0071c5; /* Intel blue for headers */
+}
+
+section .row p,
+section .row a {
+  color: #222 !important; /* High-contrast dark gray for body text and links */
+}
+
+section .row a {
+  text-decoration: underline;
+}
+
+/* Newsletter section: headers blue, text and inputs high-contrast */
+section > div > h2 {
+  color: #0071c5;
+}
+
+section > div form,
+section > div form label,
+section > div form input,
+section > div form button {
+  color: #222 !important;
+}
+
+section > div form input {
+  background: #fff;
+  color: #222;
+  border: 2px solid #0071c5;
+}
+
+section > div form button {
+  color: #fff !important;
+}
+
+/* Card style for 3-column section */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1.5px solid #e3eef7;
+  color: #222;
+}
+
+.card-title {
+  color: #0071c5;
+  font-size: 1.35em;
+  font-weight: 700;
+  margin-bottom: 0.7em;
+}
+
+.card-text,
+.card a {
+  color: #222 !important;
+}
+
+.card a {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Learn More button style for 3-column cards */
+.card .btn.btn-primary {
+  background: #fff !important;
+  border-color: #0071c5 !important;
+  color: #0071c5 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(0,113,197,0.06);
+}
+
+.card .btn.btn-primary:hover,
+.card .btn.btn-primary:focus {
+  background: #0071c5 !important;
+  border-color: #0071c5 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(0,113,197,0.18);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Newsletter card background and layout */
+.newsletter-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,113,197,0.06);
+  padding: 32px 24px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Newsletter subscribe button style (same as Learn More) */
+.newsletter-btn {
+  background: #fff !important;
+  border-color: #0071c5 !important;
+  color: #0071c5 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(0,113,197,0.06);
+  min-width: 120px;
+  min-height: 38px;
+  border-radius: 6px;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.newsletter-btn:hover,
+.newsletter-btn:focus {
+  background: #0071c5 !important;
+  border-color: #0071c5 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(0,113,197,0.18);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Responsive: stack email and button vertically on small screens */
+@media (max-width: 700px) {
+  .newsletter-card form .row {
+    flex-direction: column;
+  }
+  .newsletter-card form .col-md-8,
+  .newsletter-card form .col-md-4 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .newsletter-btn {
+    margin-top: 8px;
+  }
+}
+
+/* Add extra spacing between the 3-column section and the newsletter section */
+section[style*="margin-bottom: 48px;"] {
+  margin-bottom: 150px !important;
+}
+section[style*="margin-top: 48px;"] {
+  margin-top: 72px !important;
+}
+
+/* Footer style: blue gradient background, white top border */
+.footer-intel {
+  background: linear-gradient(135deg, #0071c5 0%, #00a6e0 100%);
+  border-top: 2px solid #fff;
+  width: 100%;
+  margin-top: 56px;
+  padding: 0;
+}
+
+/* Footer text style */
+.footer-intel span {
+  color: #e0f7fa;
+  font-size: 1em;
+}
